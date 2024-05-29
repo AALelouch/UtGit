@@ -8,6 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * People class used in People managment, has special fields to contains data about people
+ * It's used to mapping employees and clients
+ * */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

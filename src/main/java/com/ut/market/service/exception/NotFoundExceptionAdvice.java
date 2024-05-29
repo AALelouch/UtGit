@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Exception advice used to handle all not found exceptions
+ * */
 @RestControllerAdvice
 public class NotFoundExceptionAdvice {
 

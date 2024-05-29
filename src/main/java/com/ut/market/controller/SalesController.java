@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Expose the endpoint regarding sale logic and administration of sales also report generation
+ */
 @RestController
 @RequestMapping("/api/v1/sales")
 public class SalesController {

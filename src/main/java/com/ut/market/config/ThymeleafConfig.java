@@ -6,6 +6,9 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+/**
+ * Class to set up local templates, extension and instance the template engine
+ */
 @Configuration
 public class ThymeleafConfig {
 

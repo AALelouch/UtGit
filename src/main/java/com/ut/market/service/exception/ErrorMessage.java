@@ -3,6 +3,9 @@ package com.ut.market.service.exception;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * POJO used to contain data related errors and exceptions
+ */
 @NoArgsConstructor
 @Data
 public class ErrorMessage {

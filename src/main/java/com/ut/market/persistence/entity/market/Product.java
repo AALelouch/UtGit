@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * Product entity used in inventory managment, has special fields to contains data about products in inventory
+ */
 @Entity
 @Table(name = "product")
 @Data

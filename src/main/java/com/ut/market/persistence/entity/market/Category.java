@@ -2,6 +2,9 @@ package com.ut.market.persistence.entity.market;
 
 import lombok.Getter;
 
+/**
+ * Enum that contains all categories for the different products
+ */
 @Getter
 public enum Category {
 

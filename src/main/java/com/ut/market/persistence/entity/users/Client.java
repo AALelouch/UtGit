@@ -9,6 +9,9 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Client entity used in client managment, has special fields to contains data about clients
+ * */
 @Entity
 @Table(name = "client")
 public non-sealed class Client extends People implements Serializable {

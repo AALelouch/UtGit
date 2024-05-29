@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+/**
+ * Employee entity used in Employee managment, has special fields to contains data about Employees
+ * */
 @Entity
 @Table(name = "employee")
 @Data

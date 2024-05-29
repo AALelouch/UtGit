@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Expose the endpoint regarding products logic and administration of products
+ */
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {

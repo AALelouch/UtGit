@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Product repository used in product inventory managment, has special fields to contains data about products
+ * Has special and custom method for apply business logic
+ * */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContaining(String name);

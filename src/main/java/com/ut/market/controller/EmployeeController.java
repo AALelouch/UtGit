@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Expose the endpoint regarding employee logic and administration of employees
+ */
 @RestController
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {

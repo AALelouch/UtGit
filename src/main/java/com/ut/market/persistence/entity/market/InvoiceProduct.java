@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Product entity used in sales managment, has special fields to contains data about invoice products
+ * Has a relation with Sale
+ */
 @Entity
 @Table(name = "invoice_product")
 @Data

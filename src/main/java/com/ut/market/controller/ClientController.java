@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Expose the endpoint regarding client logic and administration of clients
+ */
 @RestController
 @RequestMapping("/api/v1/client")
 public class ClientController {

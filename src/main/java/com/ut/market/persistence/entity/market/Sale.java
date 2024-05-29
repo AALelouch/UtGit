@@ -11,6 +11,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Sale entity used in sales managment, has special fields to contains data about sales
+ *  Has multiple invoice product
+ *  Has relation many to one with client
+ */
 @Entity
 @Table(name = "sale")
 @Data
