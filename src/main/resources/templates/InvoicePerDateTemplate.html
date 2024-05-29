@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Factura Cliente</title>
+</head>
+<body>
+<h2>
+    <span th:text="'Informe para el dia ' + ${model.getDateStart()}"></span>
+</h2>
+<span th:each="sale:${model.getSaleResponses()}">
+    <h3>
+        <span th:text="'Informe para la venta ' + ${sale.getId()}"></span>
+    </h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product:${sale.getInvoiceProducts()}">
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getQuantity()}"></td>
+            <td th:text="${product.getTotalPrice()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>
+        <span th:text="'Total a pagar fue:  ' + ${sale.getTotalPrice()}"></span>
+    </h3>
+</span>
+<h3>
+    <span th:text="'Total de ingresos de todas las ventas:  ' + ${model.getTotalOfDate()}"></span>
+</h3>
+</body>
+</html>

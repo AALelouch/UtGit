@@ -3,12 +3,19 @@ package com.ut.market.controller;
 import com.ut.market.persistence.entity.market.Sale;
 import com.ut.market.service.CrudService;
 import com.ut.market.service.SalesService;
+import com.ut.market.service.request.sale.ReportDateSaleRequest;
 import com.ut.market.service.request.sale.SaleRequest;
+import com.ut.market.service.response.sale.ReportDateSaleResponse;
 import com.ut.market.service.response.sale.SaleResponse;
+import com.ut.market.service.util.PdfFinder;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -16,9 +23,11 @@ import java.util.List;
 public class SalesController {
 
     private final CrudService<Sale, Long, SaleRequest, SaleResponse> crudService;
+    private final PdfFinder finder;
 
-    public SalesController(SalesService crudService) {
+    public SalesController(CrudService<Sale, Long, SaleRequest, SaleResponse> crudService, PdfFinder finder) {
         this.crudService = crudService;
+        this.finder = finder;
     }
 
     @GetMapping
@@ -33,8 +42,8 @@ public class SalesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody SaleRequest saleRequest){
-        crudService.save(saleRequest);
+    public SaleResponse create(@RequestBody SaleRequest saleRequest){
+        return ((SalesService) crudService).createSale(saleRequest);
     }
 
     @PutMapping("/update/{id}")
@@ -47,6 +56,22 @@ public class SalesController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id){
         crudService.delete(id);
+    }
+
+    @GetMapping(path = "/download/{id}")
+    public ResponseEntity<Resource> download(@PathVariable String id) throws IOException {
+
+        ByteArrayResource resource = finder.findPdfUsingIdAsLastDigits(id);
+
+        return ResponseEntity.ok()
+                .contentLength(resource.contentLength())
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(resource);
+    }
+
+    @PostMapping("/dateReport/")
+    public ResponseEntity<ReportDateSaleResponse> generateReport(@RequestBody ReportDateSaleRequest request){
+        return ResponseEntity.ok(((SalesService) crudService).findByAfterDate(request));
     }
 
 }
