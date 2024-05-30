@@ -8,6 +8,9 @@ import com.ut.market.service.request.sale.SaleRequest;
 import com.ut.market.service.response.sale.ReportDateSaleResponse;
 import com.ut.market.service.response.sale.SaleResponse;
 import com.ut.market.service.util.PdfFinder;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -61,7 +64,8 @@ public class SalesController {
         crudService.delete(id);
     }
 
-    @GetMapping(path = "/download/{id}")
+    @GetMapping(path = "/download/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    @ApiResponse(content = @Content(schema = @Schema(type = "string", format = "binary")), responseCode = "200")
     public ResponseEntity<Resource> download(@PathVariable String id) throws IOException {
 
         ByteArrayResource resource = finder.findPdfUsingIdAsLastDigits(id);
@@ -69,6 +73,7 @@ public class SalesController {
         return ResponseEntity.ok()
                 .contentLength(resource.contentLength())
                 .contentType(MediaType.APPLICATION_PDF)
+                .header("Content-Disposition", "attachment; filename=" + id + ".pdf")
                 .body(resource);
     }
 
